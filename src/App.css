@@ -37,35 +37,68 @@
   }
 }
 
-
 /* //custom font */
 @font-face {
-  font-family: 'Balloons';
-  src: url('./Fonts/PWBalloon.ttf') format('truetype');
+  font-family: "Balloons";
+  src: url("./Fonts/PWBalloon.ttf") format("truetype");
   font-style: normal;
 }
 @font-face {
-  font-family: 'GeneralText';
-  src: url('./Fonts/LEMONMILK-Bold.otf') format('truetype');
+  font-family: "GeneralText";
+  src: url("./Fonts/LEMONMILK-Bold.otf") format("truetype");
   font-style: normal;
 }
 @font-face {
-  font-family: 'RetroText';
-  src: url('./Fonts/RetroTypo.ttf') format('truetype');
+  font-family: "RetroText";
+  src: url("./Fonts/RetroTypo.ttf") format("truetype");
   font-style: normal;
 }
 
-.Balloon-Font{
-  font-family: 'Balloons';
+.Balloon-Font {
+  font-family: "Balloons";
   font-size: 3rem;
-  padding: .5rem;
+  padding: 0.5rem;
 }
-.Lemon-Font{
-  font-family: 'GeneralText';
+.Lemon-Font {
+  font-family: "GeneralText";
   font-size: 2.5rem;
-  padding: .5rem;
+  padding: 0.5rem;
 }
-.Retro-Font{
-  font-family: 'RetroText';
-  
+.Retro-Font {
+  font-family: "RetroText";
+}
+
+/* Cta Button */
+button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #F4ECD6;
+  --button_outline_color: #000000;
+  font-size: 17px;
+  font-weight: bold;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
 }
