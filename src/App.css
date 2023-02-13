@@ -36,3 +36,36 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* //custom font */
+@font-face {
+  font-family: 'Balloons';
+  src: url('./Fonts/PWBalloon.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GeneralText';
+  src: url('./Fonts/LEMONMILK-Bold.otf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RetroText';
+  src: url('./Fonts/RetroTypo.ttf') format('truetype');
+  font-style: normal;
+}
+
+.Balloon-Font{
+  font-family: 'Balloons';
+  font-size: 3rem;
+  padding: .5rem;
+}
+.Lemon-Font{
+  font-family: 'GeneralText';
+  font-size: 2.5rem;
+  padding: .5rem;
+}
+.Retro-Font{
+  font-family: 'RetroText';
+  
+}
