@@ -29,7 +29,9 @@ export const Hero = () => {
             <span class="button_top"> LEARN MORE</span>
           </button>
         </div>
-        
+        <div>
+          <img alt='balloon arch' src={TanArch} className="lg:h-full lg:w-full w-fit sm:rotate-90" />
+        </div>
       </div>
   )
 }
