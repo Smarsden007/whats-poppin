@@ -59,11 +59,15 @@
   font-size: 3rem;
   padding: 0.5rem;
 }
+
+/* remove this block */
 .Lemon-Font {
   font-family: "GeneralText";
   font-size: 2.5rem;
   padding: 0.5rem;
 }
+
+
 .Lemon-Font2 {
   font-family: "GeneralText";
   font-size: 1.25rem;
@@ -72,7 +76,18 @@
 .Retro-Font {
   font-family: "RetroText";
 }
+@media only screen and (max-width: 768px) {
+.Lemon-Font{
+  font-size: 1.5rem;
+}
+.Lemon-Font2{
+  font-size: 1rem;
+}
+.Balloon-Font{
+  font-size: 1rem;
+}
 
+}
 /* Cta Button */
 button {
   /* Variables */

@@ -4,7 +4,7 @@ import TanArch from "./../Media/TanArch.png";
 export const Hero = () => {
   return (
 
-         <div className="flex flex-row justify-around ">
+         <div className="flex flex-row  justify-around ">
         <div className="flex flex-col">
           <h1 className="align-middle my-6 w-96 Lemon-Font">
             Don't let your event fall flat, make it pop with
@@ -29,9 +29,7 @@ export const Hero = () => {
             <span class="button_top"> LEARN MORE</span>
           </button>
         </div>
-        <div>
-          <img alt='balloon arch' src={TanArch} className="h-full w-full " />
-        </div>
+        
       </div>
   )
 }
