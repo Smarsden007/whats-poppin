@@ -12,7 +12,7 @@ export const MobileNav = () => {
         isOpen ? "fixed top-0 left-0 w-full h-full bg-[#F4ECD6] z-50" : ""
       }`}
     >
-      <div className="bg-[#F4ECD6]  w-full">
+      <div className="bg-[#F4ECD6] p-6 w-full">
         <nav className="mx-auto flex justify-between  bg-[#F4ECD6]">
           <img src={logo} alt="Logo" className="lg:h-36 lg:m-8 h-20" />
           <div className="block  mt-2 mr-2">

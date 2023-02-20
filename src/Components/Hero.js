@@ -5,8 +5,8 @@ export const Hero = () => {
   return (
 
          <div className="flex lg:flex-row  justify-around ">
-        <div className="flex flex-col">
-          <h1 className="align-middle my-6 w-96 Lemon-Font">
+        <div className="flex flex-col ">
+          <h1 className="align-middle my-6 sm:w-48 lg:w-96 Lemon-Font">
             Don't let your event fall flat, make it pop with
             <span> </span>
             <span style={{color: "#ff0000" }}>W</span>
@@ -25,12 +25,12 @@ export const Hero = () => {
             Balloon Decor
           </h1>
 
-          <button className="w-72">
-            <span class="button_top"> LEARN MORE</span>
+          <button className="w-48">
+            <span class="button_top "> BOOK NOW</span>
           </button>
         </div>
         <div>
-          <img alt='balloon arch' src={TanArch} className="lg:h-full lg:w-full w-fit sm:rotate-90" />
+          <img alt='balloon arch' src={TanArch} className="lg:h-full lg:w-full w-fit sm:rotate-90 sm:mxauto" />
         </div>
       </div>
   )
