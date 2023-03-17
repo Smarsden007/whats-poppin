@@ -21,12 +21,20 @@ function ThreeTest() {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     rendererRef.current.appendChild(renderer.domElement);
+
     // load the 3D object
     const loader = new GLTFLoader();
-    loader.load('./../Media/untitled.glb', (gltf) => {
-      const object = gltf.scene;
-      scene.add(object);
-    });
+    loader.load(
+      './../Media/Test.glb', // path to your .glb file
+      (gltf) => {
+        const object = gltf.scene;
+        scene.add(object);
+      },
+      undefined,
+      (error) => {
+        console.error(error);
+      }
+    );
 
     // render the scene
     function animate() {
@@ -36,7 +44,7 @@ function ThreeTest() {
     animate();
   }, []);
 
-  return <div ref={rendererRef} />;
+  return <div ref={rendererRef} style={{ width: '100%', height: '100%' }} />;
 }
 
 export default ThreeTest;
