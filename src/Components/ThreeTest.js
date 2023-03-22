@@ -1,77 +1,106 @@
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-function ThreeTest() {
-  const rendererRef = useRef(null);
-  const sceneRef = useRef(null);
-  const cameraRef = useRef(null);
+import React, { useState, useRef, useEffect } from "react";
+import * as THREE from "three";
+
+const ThreeTest = () => {
+  const containerRef = useRef(null);
+  const [color1, setColor1] = useState(0xffffff);
+  const [color2, setColor2] = useState(0xffffff);
+  const [color3, setColor3] = useState(0xffffff);
 
   useEffect(() => {
-    // create a scene
+    // Get the container div
+    const container = containerRef.current;
+  
+    // Create the scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0xffffff); // set the background color to white
-    sceneRef.current = scene;
-
-    // create a camera
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.z = 5;
-    cameraRef.current = camera;
-
-    // create a renderer
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    rendererRef.current.appendChild(renderer.domElement);
-
-    // load the 3D model from file
-    const loader = new GLTFLoader();
-    loader.load(
-      './../Media/untitled2',
-      (gltf) => {
-        // called when the model is loaded
-        const model = gltf.scene;
-        model.position.set(0, 0, 0);
-        scene.add(model);
-      },
-      (progress) => {
-        // called while the model is loading
-        console.log(`Loading ${Math.round(progress.loaded / progress.total * 100)}%...`);
-      },
-      (error) => {
-        // called if there is an error loading the model
-        console.error(error);
-      }
+  
+    // Create the camera
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      container.clientWidth / container.clientHeight,
+      0.1,
+      1000
     );
-
-    // add a light to the scene
-    const light = new THREE.PointLight(0xffffff, 1, 100);
-    light.position.set(0, 0, 10);
-    scene.add(light);
-
-    // render the scene
-    function animate() {
+    camera.position.z = 5;
+  
+    // Create the renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+  
+    // Create the first balloon
+    const geometry1 = new THREE.SphereGeometry(0.5, 32, 32);
+    const material1 = new THREE.MeshBasicMaterial({ color: color1 });
+    const balloon1 = new THREE.Mesh(geometry1, material1);
+    balloon1.position.x = -2;
+    scene.add(balloon1);
+  
+    // Create the second balloon
+    const geometry2 = new THREE.SphereGeometry(0.5, 32, 32);
+    const material2 = new THREE.MeshBasicMaterial({ color: color2 });
+    const balloon2 = new THREE.Mesh(geometry2, material2);
+    balloon2.position.x = 0;
+    scene.add(balloon2);
+  
+    // Create the third balloon
+    const geometry3 = new THREE.SphereGeometry(0.5, 32, 32);
+    const material3 = new THREE.MeshBasicMaterial({ color: color3 });
+    const balloon3 = new THREE.Mesh(geometry3, material3);
+    balloon3.position.x = 2;
+    scene.add(balloon3);
+  
+    // Animate the scene
+    const animate = function () {
       requestAnimationFrame(animate);
+      balloon1.rotation.x += 0.01;
+      balloon1.rotation.y += 0.01;
+      balloon2.rotation.x += 0.01;
+      balloon2.rotation.y += 0.01;
+      balloon3.rotation.x += 0.01;
+      balloon3.rotation.y += 0.01;
       renderer.render(scene, camera);
-    }
-    animate();
-
-    // add event listener for window resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // clean up event listeners on unmount
-    return () => {
-      window.removeEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
     };
-  }, []);
-
-  return <div ref={rendererRef} style={{ width: '100%', height: '100%' }} />;
-}
+  
+    animate();
+  
+    // Clean up the scene when the component is unmounted
+    return function cleanup() {
+      renderer.dispose();
+      geometry1.dispose();
+      material1.dispose();
+      geometry2.dispose();
+      material2.dispose();
+      geometry3.dispose();
+      material3.dispose();
+      scene.dispose();
+    };    
+  }, [color1, color2, color3]);
+  
+return (
+  <div style={{ width: "100%", height: "100%" }}>
+    <div ref={containerRef} style={{ width: "100%", height: "80%" }} />
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <button
+        onClick={() => setColor1(Math.random() * 0xffffff)}
+        style={{ backgroundColor: `#${color1.toString(16)}` }}
+      >
+        Change Color 1
+      </button>
+      <button
+        onClick={() => setColor2(Math.random() * 0xffffff)}
+        style={{ backgroundColor: `#${color2.toString(16)}` }}
+      >
+        Change Color 2
+      </button>
+      <button
+        onClick={() => setColor3(Math.random() * 0xffffff)}
+        style={{ backgroundColor: `#${color3.toString(16)}` }}
+      >
+        Change Color 3
+      </button>
+    </div>
+  </div>
+);
+};
 
 export default ThreeTest;
